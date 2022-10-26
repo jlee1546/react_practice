@@ -5,6 +5,7 @@ function Input() {
     firstName: "",
     lastName: "",
     email: "",
+    comments: "",
   });
   console.log(formData);
 
@@ -39,6 +40,12 @@ function Input() {
         name="email"
         onChange={changeHandler}
         value={formData.email}
+      />
+      <textarea
+        placeholder="Comments"
+        name="comments"
+        onChange={changeHandler}
+        value={formData.comments}
       />
     </form>
   );
