@@ -6,14 +6,17 @@ function Input() {
     lastName: "",
     email: "",
     comments: "",
+    isFriendly: true,
+    employment: "",
   });
-  console.log(formData);
+  console.log(formData.employment);
 
   function changeHandler(event) {
+    const { name, value, type, checked } = event.target;
     setFormData((prevState) => {
       return {
         ...prevState,
-        [event.target.name]: event.target.value,
+        [name]: type === "checkbox" ? checked : value,
       };
     });
   }
@@ -47,6 +50,52 @@ function Input() {
         onChange={changeHandler}
         value={formData.comments}
       />
+      <div>
+        <input
+          type="checkbox"
+          id="isFriendly"
+          onChange={changeHandler}
+          checked={formData.isFriendly}
+          name="isFriendly"
+        />
+        <label htmlFor="isFriendly">Are you friendly</label>
+      </div>
+      <fieldset>
+        <legend>Current employment status</legend>
+
+        <input
+          type="radio"
+          id="unemployed"
+          name="employment"
+          value="unemployed"
+          checked={formData.employment === "unemployed"}
+          onChange={changeHandler}
+        />
+        <label htmlFor="unemployed">Unemployed</label>
+
+        <br />
+
+        <input
+          type="radio"
+          id="full-time"
+          name="employment"
+          value="full-time"
+          checked={formData.employment === "full-time"}
+          onChange={changeHandler}
+        />
+        <label htmlFor="full-time">Full-time</label>
+        <br />
+
+        <input
+          type="radio"
+          id="part-time"
+          name="employment"
+          value="part-time"
+          checked={formData.employment === "part-time"}
+          onChange={changeHandler}
+        />
+        <label htmlFor="part-time">Part-time</label>
+      </fieldset>
     </form>
   );
 }
