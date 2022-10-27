@@ -73,3 +73,7 @@ form > input {
 form > textarea {
   width: 25%;
 }
+
+select {
+  margin-bottom: 1rem;
+}
