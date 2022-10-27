@@ -8,10 +8,11 @@ function Input() {
     comments: "",
     isFriendly: true,
     employment: "",
+    favColor: "",
   });
-  console.log(formData.employment);
 
   function changeHandler(event) {
+    console.log(event.target.checked);
     const { name, value, type, checked } = event.target;
     setFormData((prevState) => {
       return {
@@ -21,8 +22,13 @@ function Input() {
     });
   }
 
+  function processForm(event) {
+    event.preventDefault();
+    console.log(formData);
+  }
+
   return (
-    <form>
+    <form onSubmit={processForm}>
       <input
         type="text"
         placeholder="First Name"
@@ -96,6 +102,26 @@ function Input() {
         />
         <label htmlFor="part-time">Part-time</label>
       </fieldset>
+      <br />
+
+      <label htmlFor="favColor">What is your favorite color?</label>
+
+      <select
+        id="favColor"
+        value={formData.favColor}
+        onChange={changeHandler}
+        name="favColor"
+      >
+        <option value="">-- Choose --</option>
+        <option value="red">Red</option>
+        <option value="orange">Orange</option>
+        <option value="yellow">Yelloww</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+        <option value="indigo">Indigo</option>
+        <option value="violet">Violet</option>
+      </select>
+      <button>Submit</button>
     </form>
   );
 }
