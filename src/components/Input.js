@@ -7,17 +7,18 @@ function Input() {
     email: "",
     password: "",
     passwordConfirmation: "",
+    comments: "",
+    okToMail: true,
   });
 
   function clickHandler(event) {
-    console.log(event.target.value);
-    const { name, value } = event.target;
+    const { name, value, type, checked } = event.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: type === "checkbox" ? checked : value,
     }));
   }
-
+  console.log(formData.okToMail);
   function submitFormData(event) {
     event.preventDefault();
     console.log(formData);
@@ -60,7 +61,24 @@ function Input() {
         value={formData.passwordConfirmation}
         onChange={clickHandler}
       />
+      <textarea
+        value={formData.comments}
+        name="comments"
+        placeholder="Comments"
+        onChange={clickHandler}
+      />
+
       <button>Submit</button>
+      <div>
+        <input
+          type="checkbox"
+          id="okToMail"
+          name="okToMail"
+          checked={formData.okToMail}
+          onChange={clickHandler}
+        />
+        <label htmlFor="okToMail">Like to sign up for newsletter?</label>
+      </div>
     </form>
   );
 }
